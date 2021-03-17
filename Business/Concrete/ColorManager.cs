@@ -38,5 +38,10 @@ namespace Business.Concrete
 		{
 			return new SuccessDataResult<List<Color>>(_colorDal.GetAll(),Messages.SuccessListed);
 		}
+
+		public IDataResult<Color> GetById(int id)
+		{
+			return new SuccessDataResult<Color>(_colorDal.Get(p => p.ColorId == id));
+		}
 	}
 }

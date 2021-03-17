@@ -61,6 +61,9 @@ namespace Business.Concrete
 			return new SuccessDataResult<Car>(_carDal.Get(p => p.ColorId == id), Messages.SuccessListed);
 		}
 
-
+		public IDataResult<Car> GetById(int id)
+		{
+			return new SuccessDataResult<Car>(_carDal.Get(p => p.Id == id));
+		}
 	}
 }
