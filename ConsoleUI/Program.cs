@@ -27,21 +27,21 @@ namespace ConsoleUI
 			RentalManager rentalManager = new RentalManager(new EfRentalDal());
 			CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
 
-			userManager.Add(new User {UserId=2, UserFirstName = "Eren", UserLastName = "Cano", UserEmail = "erencano@123.com", UserPassword = "123" });
-			var result = userManager.GetAll();
+			//userManager.Add(new User {UserId=2, UserFirstName = "Eren", UserLastName = "Cano", UserEmail = "erencano@123.com", UserPassword = "123" });
+			//var result = userManager.GetAll();
 
-			if (result.Success == true)
-			{
-				foreach (var product in result.Data)
-				{
-					Console.WriteLine(product.UserFirstName + "--" + product.UserLastName+"--"+ product.UserEmail +"--"+product.UserPassword);
-				}
-				Console.WriteLine(result.Message);
-			}
-			else
-			{
-				Console.WriteLine(result.Message);
-			}
+			//if (result.Success == true)
+			//{
+			//	foreach (var product in result.Data)
+			//	{
+			//		Console.WriteLine(product.UserFirstName + "--" + product.UserLastName+"--"+ product.UserEmail +"--"+product.UserPassword);
+			//	}
+			//	Console.WriteLine(result.Message);
+			//}
+			//else
+			//{
+			//	Console.WriteLine(result.Message);
+			//}
 		}
 
 		//private static void Update(CarManager carManager)

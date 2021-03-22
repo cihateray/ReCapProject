@@ -17,7 +17,7 @@ namespace Core.Utilities.Interceptors
             OnBefore(invocation);
             try
             {
-                invocation.Proceed();
+                 invocation.Proceed();
             }
             catch (Exception e)
             {
