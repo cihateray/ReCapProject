@@ -25,5 +25,6 @@ namespace Business.Constants
 		public static string SuccessfulLogin = "Başarılı giriş";
 		public static string ProductUpdated = "Ürün güncellendi.";
 		public static string CarNameAlreadyExists = "Böyle bir isimli araba mevcut";
+		public static string CustomerListed = "Müsteriler listelendi";
 	}
 }

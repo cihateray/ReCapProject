@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
@@ -22,6 +21,7 @@ namespace WebAPI.Controllers
 		[HttpGet("getall")]
 		public IActionResult GetAll()
 		{
+			
 			var result = _carService.GetAll();
 			if (result.Success)
 			{
@@ -41,21 +41,38 @@ namespace WebAPI.Controllers
 			return BadRequest(result);
 		}
 
-		[HttpGet("getcarsbycolorid")]
-		public IActionResult GetCarsByColorId(int id)
+		[HttpGet("getbycolor")]
+		public IActionResult GetCarsByColorId(int colorId)
 		{
-			var result = _carService.GetCarsByColorId(id);
+			var result = _carService.GetCarsByColorId(colorId);
 			if (result.Success)
 			{
 				return Ok(result);
 			}
 			return BadRequest(result);
 		}
-
-		[HttpGet("getcarsbybrandid")]
-		public IActionResult GetCarsByBrandId(int id)
+		[HttpGet("getbybrandandcolor")]
+		public IActionResult GetCarDetailsByBrandNameAndColorName(int brandId, int colorId)
 		{
-			var result = _carService.GetCarsByBrandId(id);
+			var result = _carService.GetCarDetailsByBrandNameAndColorName(brandId, colorId);
+			if (result.Success) return Ok(result);
+
+			return BadRequest(result);
+		}
+		[HttpGet("getbybrand")]
+		public IActionResult GetCarsByBrandId(int brandId)
+		{
+			var result = _carService.GetCarsByBrandId(brandId);
+			if (result.Success)
+			{
+				return Ok(result);
+			}
+			return BadRequest(result);
+		}
+		[HttpGet("getcardetail")]
+		public IActionResult GetCarDetailById(int id)
+		{
+			var result = _carService.GetCarDetailById(id);
 			if (result.Success)
 			{
 				return Ok(result);

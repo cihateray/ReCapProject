@@ -14,23 +14,29 @@ namespace DataAccess.Concrete.EntityFramework
 {
 	public class EfCarDal : EfEntityRepositoryBase<Car, ReCarContext>, ICarDal
 	{
-		public List<CarDetailDto> GetCarDetails()
+		public List<CarDetailDto> GetCarDetails(Expression<Func<CarDetailDto, bool>> filter = null)
 		{
 			using (ReCarContext context = new ReCarContext())
 			{
-				var result = from p in context.Cars
-							 join c in context.Colors
-							 on p.ColorId equals c.ColorId
-							 join b in context.Brands
-							 on p.BrandId equals b.BrandId
-							 select new CarDetailDto
-							 {
-								 CarName = p.CarName,
-								 BrandName = b.BrandName,
-								 ColorName = c.ColorName,
-								 DailyPrice = p.DailyPrice
-							 };
-				return result.ToList();
+				var result =
+					from car in context.Cars
+					join brand in context.Brands on car.BrandId equals brand.BrandId
+					join color in context.Colors on car.ColorId equals color.ColorId
+					select new CarDetailDto
+					{
+						Id = car.Id,
+						BrandName = brand.BrandName,
+						BrandId = brand.BrandId,
+						CarName = car.CarName,
+						ColorId = color.ColorId,
+						ColorName = color.ColorName,
+						DailyPrice = car.DailyPrice,
+						Description = car.Description,
+						ModelYear = car.ModelYear,
+						ImagePath = (from a in context.CarImages where a.CarId == car.Id select a.ImagePath).FirstOrDefault(),
+						Status = !context.Rentals.Any(r => r.CarId == car.Id && (r.ReturnDate == null || r.RentDate > DateTime.Now))
+					};
+				return filter == null ? result.ToList() : result.Where(filter).ToList();
 			}
 		}
 	}

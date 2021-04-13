@@ -23,6 +23,7 @@ namespace WebAPI.Controllers
 		[HttpGet("getall")]
 		public IActionResult GetAll()
 		{
+
 			var result = _rentalService.GetAll();
 			if (result.Success)
 			{
@@ -68,6 +69,16 @@ namespace WebAPI.Controllers
 		public IActionResult Update(Rental rental)
 		{
 			var result = _rentalService.Update(rental);
+			if (result.Success)
+			{
+				return Ok(result);
+			}
+			return BadRequest(result);
+		}
+		[HttpGet("getrentaldetails")]
+		public IActionResult GetRentalDetails()
+		{
+			var result = _rentalService.GetRentalDetails();
 			if (result.Success)
 			{
 				return Ok(result);
