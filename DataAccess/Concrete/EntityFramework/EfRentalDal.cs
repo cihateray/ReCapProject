@@ -12,7 +12,6 @@ namespace DataAccess.Concrete.EntityFramework
 {
 	public class EfRentalDal : EfEntityRepositoryBase<Rental, ReCarContext>, IRentalDal
 	{
-
 		public List<RentalDetailDto> GetRentalDetails(Expression<Func<Rental, bool>> filter = null)
 		{
             using (ReCarContext context = new ReCarContext())
@@ -25,6 +24,7 @@ namespace DataAccess.Concrete.EntityFramework
                              join color in context.Colors on car.ColorId equals color.ColorId
                              select new RentalDetailDto
                              {
+
 
                                  RentalId = rental.RentalId,
                                  CompanyName = customer.CompanyName,
