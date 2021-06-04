@@ -12,7 +12,6 @@ namespace DataAccess.Concrete.EntityFramework
 {
 	public class EfRentalDal : EfEntityRepositoryBase<Rental, ReCarContext>, IRentalDal
 	{
-
 		public List<RentalDetailDto> GetRentalDetails(Expression<Func<Rental, bool>> filter = null)
 		{
             using (ReCarContext context = new ReCarContext())
